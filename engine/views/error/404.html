@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>404 error</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        html, body{
+            width: 100%;
+            height: 100%;
+            background-color: black;
+        }
+        .container{
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(70deg, #0e1525, #000000);
+            position: relative;
+        }
+        .errorHolder{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+        }
+        .error_code{
+            color: #a6d0ff;
+            text-shadow: 0 0 30px rgba(0, 73, 213, 0.2);
+            font-family: Arial,serif;
+            font-weight: 400;
+            font-size: 160px;
+            animation: textAnimation 5S;
+            animation-iteration-count: infinite;
+
+        }
+        .error_explain{
+            color: rgba(255, 255, 255, 0.51);
+            font-family: Arial,serif;
+            font-weight: 100;
+            font-size: 24px;
+        }
+        @keyframes textAnimation {
+            0%{
+                opacity: 100%;
+                transform: translateY(0) scale(1);
+                filter: blur(0px);
+            }
+            50%{
+                opacity: 40%;
+                transform: translateY(-8px) scale(0.99);
+                filter: blur(2px);
+            }
+            100%{
+                opacity: 100%;
+                transform: translateY(0) scale(1);
+                filter: blur(0px);
+            }
+
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="errorHolder">
+            <div class="error_code">404</div>
+            <div class="error_explain">This page is not exist</div>
+        </div>
+    </div>
+</body>
+</html>
