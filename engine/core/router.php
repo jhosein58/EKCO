@@ -82,4 +82,8 @@ class Route
             self::process($url, $func);
         }
     }
+    public static function req($url, $func): void
+    {
+        self::process($url, $func);
+    }
 }

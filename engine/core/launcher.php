@@ -3,8 +3,7 @@
 class Launcher
 {
     public function start(): int{
-        $this->autoloader();
-        return 0;
+        return $this->autoloader();
     }
     protected function hashKeyGenerator(): void{
         $configURL = $_SERVER['DOCUMENT_ROOT'].'/engine/config.php';
@@ -37,8 +36,33 @@ class Launcher
             $_SESSION['client_id'] = $_COOKIE['client'];
         }
     }
-    private function autoloader(): void
+    private function setupCorsApi(): void{
+        if (@$_SERVER['HTTP_ORIGIN']) {
+            //header("Origin: http://localhost");
+            header("Access-Control-Allow-Origin: *");
+            header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
+            header('Access-Control-Max-Age: 1000');
+            header('Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept');
+        }
+        if (isset($_SERVER['HTTP_ORIGIN'])) {
+                header("Access-Control-Allow-Origin: {$_SERVER['HTTP_ORIGIN']}");
+                header('Access-Control-Allow-Credentials: true');
+                header('Access-Control-Max-Age: 86400');
+            }
+            if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
+
+                if (isset($_SERVER['HTTP_ACCESS_CONTROL_REQUEST_METHOD']))
+                    header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
+
+                if (isset($_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']))
+                    header("Access-Control-Allow-Headers: {$_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']}");
+
+                exit(0);
+            }
+    }
+    private function autoloader(): int
     {
+        $this->setupCorsApi();
         session_start();
         $_SESSION ['db_ext'] = 0;
         $_SESSION['error'] = 0;
@@ -75,6 +99,7 @@ class Launcher
         }
         include_once ROOT_PATH . 'engine/routes.php';
         //error(404);
+        return 0;
 
     }
 }
