@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="WEB_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/engine/core" isTestSource="false" />
+      <excludeFolder url="file://$MODULE_DIR$/engine/vendor/composer" />
+      <excludeFolder url="file://$MODULE_DIR$/engine/vendor/phrity/net-uri" />
+      <excludeFolder url="file://$MODULE_DIR$/engine/vendor/phrity/util-errorhandler" />
+      <excludeFolder url="file://$MODULE_DIR$/engine/vendor/psr/http-factory" />
+      <excludeFolder url="file://$MODULE_DIR$/engine/vendor/psr/http-message" />
+      <excludeFolder url="file://$MODULE_DIR$/engine/vendor/psr/log" />
+      <excludeFolder url="file://$MODULE_DIR$/engine/vendor/textalk/websocket" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>

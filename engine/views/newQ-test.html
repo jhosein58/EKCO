@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="file" id="o1">
+<input type="file" id="o2">
+<input type="file" id="o3">
+<input type="file" id="o4">
+<hr>
+<input type="button" onclick="doUpload()" value="start">
+<button>upload</button>
+</body>
+<script>
+    // Select your input type file and store it in a variable
+
+    // This will upload the file after having read it
+    const upload = (o1, o2, o3, o4) => {
+
+        const formData = new FormData();
+        formData.append( 'o1_img', o1 );
+        formData.append( 'title_text', 'hello' );
+        formData.append( 'o2_img', o2 );
+        formData.append( 'o3_text', 'o3 text');
+        formData.append( 'o4_img', o4 );
+        formData.append( 'o4_text', 'o4 text' );
+        formData.append( 'name', 'tttt' );
+        formData.append( 'lesson', 'dddddd' );
+        formData.append( 'keyword', 'cccccc' );
+        formData.append( 'designer', 'ccdsdsdsdsdsd33333333c' );
+
+        fetch('http://localhost/api/new_question/eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjoibWFzdGVyIiwicGFzcyI6IjEyMzQ1NiIsImF1dGhlbnRpY2F0aW9uIjoiX0ZQNEpCISQifQ.oL8iIDoY8gfmVCo3C-zAC5clrVpinRxQNTjdKYNLluQ', {
+            method: 'POST',
+            body: formData
+        }).then(
+            response => response.json()
+        ).then(
+            success => console.log(success)
+        ).catch(
+            error => console.log(error)
+        );
+    };
+
+    function doUpload (){
+        let o1 = document.getElementById('o1');
+        let o2 = document.getElementById('o2');
+        let o3 = document.getElementById('o3');
+        let o4 = document.getElementById('o4');
+        upload(o1.files[0],o2.files[0],o3.files[0],o4.files[0]);
+    }
+</script>
+</html>

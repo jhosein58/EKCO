@@ -142,9 +142,30 @@ function storage_read($path): string
 {
     return file_get_contents(storage_path($path));
 }
-function storage_upload($path, $file)
+function storage_uploadImage(string $path, $file, int $max_size = 100): int
 {
-
+    $canUpload = true;
+    $imageFileType = strtolower(pathinfo(basename($file["name"]),PATHINFO_EXTENSION));
+    if (file_exists(storage_path($path))) {
+        $canUpload = false;
+        return 1;
+    }
+    if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+        && $imageFileType != "gif" ) {
+        $canUpload = false;
+        return 1;
+    }
+    if ($file["size"] > $max_size * 1024) {
+        $canUpload = false;
+         return 1;
+    }
+    if($canUpload){
+        if(move_uploaded_file($file["tmp_name"], storage_path($path))){
+            return 0;
+        }else{
+            return 1;
+        }
+    }
 }
 
 //view and controller functions
